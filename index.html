@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/256/763/763789.png">
+    <title>Namora comigo?</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+      }
+      :root {
+        --main-color: #fd052f;
+        --body-color: #020202;
+        --text-primary-color: #fff;
+        --hover-color: #252323;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--body-color);
+        height: auto;
+        width: 100%;
+      }
+	  
+	  .background-1 {
+  height: 100vh;
+  width: 100%;
+  background: center / cover no-repeat url("https://i.postimg.cc/BZm3z697/pic1.jpg");
+	}
+	.background-2 {
+	  height: 100vh;
+	  width: 100%;
+	  background: center / cover no-repeat url("https://i.postimg.cc/05KgVCnj/pic1-1.jpg");
+	  background-attachment: fixed;
+	}
+	
+     .background-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: center / cover no-repeat url("https://i.postimg.cc/6qWvpQY1/pic3.jpg");
+    position: relative; /* Garante que os elementos filhos usem posicionamento relativo a este container */
+    }
+   
+	  .cta {
+    gap: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10%; /* Ajuste essa porcentagem conforme necessário */
+    left: 50%;
+    transform: translateX(-50%);
+    }
+      .btn {
+        width: 140px;
+        height: 50px;
+        background: linear-gradient(to top, #013f4a, #24c6dc, #00d4ff);
+        color: var(--text-primary-color);
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+      .btn span {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: top 0.5s;
+      }
+      .btn-text-one {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+      .btn-text-two {
+        position: absolute;
+        width: 100%;
+        top: 150%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+      .btn:hover {
+        background: #fff;
+        color: var(--main-color);
+      }
+      .btn:hover .btn-text-one {
+        top: -100%;
+      }
+      .btn:hover .btn-text-two {
+        top: 50%;
+      }
+	  
+	    #confetti {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      .confetti-piece {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f1c40f;
+        transform: rotate(45deg);
+        pointer-events: none;
+        animation: confetti-fall 6s infinite;
+      }
+      @keyframes confetti-fall {
+        0% {
+          transform: rotate(45deg) translate(0, -100vh);
+        }
+        100% {
+          transform: rotate(45deg) translate(0, 100vh);
+        }
+      }
+      .confetti-piece:nth-child(1) {
+        background-color: #e67e22;
+      }
+      .confetti-piece:nth-child(2) {
+        background-color: #e74c3c;
+      }
+      .confetti-piece:nth-child(3) {
+        background-color: #3498db;
+      }
+      .confetti-piece:nth-child(4) {
+        background-color: #9b59b6;
+      }
+      .confetti-piece:nth-child(5) {
+        background-color: #2ecc71;
+      }
+	  
+        #loadingScreen {
+			position: fixed;
+			width: 50%;
+			height: 50vh;
+			background: #020202 url('https://i.postimg.cc/2ScGNGc0/Camiseta-dia-dos-namorados-pedido-de-namoro-pixels-vermelho-e-verde-Photoroom.png') center / contain no-repeat;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 40;
+			transition: opacity 1s ease-in-out;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+        #mainContent {
+            display: none;
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+  </head>
+  <body>
+  <div id="loadingScreen"></div>
+
+    <div id="mainContent">
+        <div class="background-1"></div>
+    <div class="background-2"></div>
+    <div class="background-3">
+      <div class="cta">
+        <button class="btn" id="sim" onclick="showConfetti()" >
+          <span class="btn-text-one">Sim</span>
+          <span class="btn-text-two">💕</span>
+        </button>
+        <button class="btn nao"  id="nao" onclick="moverNao()">
+	      <span class="btn-text-one">Não</span>
+          <span class="btn-text-two">???</span>
+		</button>
+        </button>
+      </div>
+	  </div>
+	  <div id="confetti"></div>
+    </div>
+    </div>
+    
+	
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+	
+	function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContent = document.getElementById('mainContent');
+
+            loadingScreen.style.opacity = '0';
+
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+            }, 1000); 
+        }
+
+        setTimeout(hideLoadingScreen, 2000);
+      
+	    document.getElementById('sim').addEventListener("click", () => {
+		const yesButton = document.getElementById("sim");
+		const noButton = document.getElementById("nao");
+
+		yesButton.style.display = "none";
+		noButton.style.display = "none";
+
+		Swal.fire({
+			title: 'Tem certeza?',
+			html: 'Não pode voltar atrás',
+			showCancelButton: true,
+			confirmButtonText: 'Sim',
+			cancelButtonText: 'Não',
+			background: '#1e1e1e',
+			color: '#fff'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+					title: 'Acertou',
+					icon: 'success',
+					background: '#1e1e1e',
+					color: '#fff'
+				}).then(() => {
+					window.location.href = "https://youtu.be/PQ4lhFO7QYY?si=CS-96HdYabkp7ddP";
+				});
+				 window.location.href = "https://youtu.be/PQ4lhFO7QYY?si=CS-96HdYabkp7ddP";
+			} else if (result.dismiss === Swal.DismissReason.cancel) {
+				Swal.fire({
+					title: 'Resposta errada',
+					icon: 'error',
+					background: '#1e1e1e',
+					color: '#fff'
+				}).then(() => {
+					window.location.href = "https://youtube.com/shorts/wcTbVOtE1R8?si=QFWExN2Wly5ifLEb";
+				});
+				window.location.href = "https://youtube.com/shorts/wcTbVOtE1R8?si=QFWExN2Wly5ifLEb";
+			}
+
+			
+			<!-- question.style.display = "flex"; -->
+			yesButton.style.display = "inline-block";
+			noButton.style.display = "inline-block";
+		});
+		});
+	
+	  function showConfetti() {
+        const question = document.getElementById("question");
+        const yesButton = document.getElementById("sim");
+        const noButton = document.getElementById("nao");
+        const confettiContainer = document.getElementById("confetti");
+
+        question.style.display = "none";
+        yesButton.style.display = "none";
+        noButton.style.display = "none";
+
+        for (let i = 0; i < 100; i++) {
+          const confettiPiece = document.createElement("div");
+          confettiPiece.classList.add("confetti-piece");
+          confettiPiece.style.left = `${Math.random() * 100}%`;
+          confettiPiece.style.animationDelay = `${Math.random() * 6}s`;
+          confettiContainer.appendChild(confettiPiece);
+        }
+      }
+
+     
+		function moverNao() {
+		
+		const simBtn = document.getElementById("sim");
+        const naoBtn = document.getElementById("nao");
+		const cta = document.querySelector(".cta");
+		const simRect = simBtn.getBoundingClientRect();
+		const naoRect = naoBtn.getBoundingClientRect();
+
+		cta.removeChild(simBtn);
+		cta.removeChild(naoBtn);
+		  
+		if (naoRect.left < simRect.left) {
+		  cta.appendChild(simBtn);
+		  cta.appendChild(naoBtn);
+		} else {
+		   cta.appendChild(naoBtn);
+		   cta.appendChild(simBtn);
+		}
+		
+	}
+    </script>
+  </body>
+</html>
